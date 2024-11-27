@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
+    @EnvironmentObject private var coordinator: Coordinator
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,9 +18,12 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onTapGesture {
+            coordinator.push(_screen: .details(data: ["1", "2", "3"]))
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct QuickEventApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CoordinatorView()
         }
     }
 }
