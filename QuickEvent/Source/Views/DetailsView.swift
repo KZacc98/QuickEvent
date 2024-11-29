@@ -18,7 +18,7 @@ struct DetailsView: View {
                 ForEach(data, id: \.self) { text in
                     Text(text)
                         .onTapGesture {
-                            coordinator.push(_screen: .details(data: [text]))
+                            coordinator.push(.details(data: [text]))
                         }
                 }
             }

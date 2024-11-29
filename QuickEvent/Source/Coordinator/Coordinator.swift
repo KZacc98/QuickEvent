@@ -10,8 +10,8 @@ import SwiftUI
 class Coordinator: ObservableObject {
     @Published var path: NavigationPath = NavigationPath()
     
-    func push(_screen: Screen) {
-        path.append(_screen)
+    func push(_ screen: Screen) {
+        path.append(screen)
     }
     
     func pop() {
@@ -26,7 +26,7 @@ class Coordinator: ObservableObject {
     func build(screen: Screen) -> some View {
         switch screen {
         case .home:
-            HomeView()
+            HomeView(viewModel: HomeViewModel(eventsService: EventsService(networkManager: NetworkManager())))
         case .details(data: let data):
             DetailsView(data: data)
         }
