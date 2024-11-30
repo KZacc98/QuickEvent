@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 class HomeViewModel: ObservableObject {
-    @Published var events: [Event] = []
+    @Published var events: [EventDomain] = []
     @Published var errorMessage: String?
     
     private var cancellables = Set<AnyCancellable>()
@@ -20,7 +20,7 @@ class HomeViewModel: ObservableObject {
     private var hasMoreData = true
 
 
-    init(eventsService: EventsService?, events: [Event] = []) {
+    init(eventsService: EventsService?, events: [EventDomain] = []) {
         self.eventsService = eventsService
         self.events = events
     }
@@ -41,10 +41,10 @@ class HomeViewModel: ObservableObject {
                     self?.hasMoreData = false
                 }
             }, receiveValue: { [weak self] response in
-                if response.embedded.events.isEmpty {
+                if response.isEmpty {
                     self?.hasMoreData = false
                 } else {
-                    self?.events.append(contentsOf: response.embedded.events)
+                    self?.events.append(contentsOf: response)
                     self?.currentPage += 1
                 }
             })

@@ -15,7 +15,7 @@ struct HomeView: View {
     init(viewModel: HomeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-
+    
     var body: some View {
         VStack {
             if let errorMessage = viewModel.errorMessage {
@@ -24,18 +24,26 @@ struct HomeView: View {
                     .padding()
             }
             List(viewModel.events) { event in
-                Text(event.name)
-                    .font(.headline)
-                    .padding()
-                    .onAppear {
-                        if event == viewModel.events.last {
-                            viewModel.getEvents()
-                        }
+                EventListItemView(item: EventListItem(
+                    title: event.name ?? "title",
+                    eventDate: event.startDate ?? "desc1",
+                    city: event.venueDetails?.first?.city ?? "desc2",
+                    venueName: event.venueDetails?.first?.name ?? "desc3",
+                    imageUrl: event.bestSixteenByNineImage?.url ?? ""))
+                .padding(.vertical, 8)
+                .onTapGesture {
+                    coordinator.push(.details(data: [
+                        event.name ?? "name",
+                        event.startDate ?? "start",
+                        event.venueDetails?.first?.name ?? "venue name"]))
+                }
+                .onAppear {
+                    if event == viewModel.events.last {
+                        viewModel.getEvents()
                     }
-                    .onTapGesture {
-                        coordinator.push(.details(data: [event.name]))
-                    }
+                }
             }
+            .ignoresSafeArea(.all)
         }
         .onAppear {
             if viewModel.events.isEmpty {
@@ -45,17 +53,11 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView(
-        viewModel: HomeViewModel(
-            eventsService: nil,
-            events: [
-                Event(
-                    id: "1",
-                    name: "name"),
-                Event(
-                    id: "2",
-                    name: "name")]
-        )
-    )
-}
+//#Preview {
+//    HomeView(
+//        viewModel: HomeViewModel(
+//            eventsService: nil,
+//            events: []
+//        )
+//    )
+//}

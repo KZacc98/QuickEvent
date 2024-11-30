@@ -1,12 +1,13 @@
 //
-//  TMResponse.swift
+//  TMResponseRemote.swift
 //  QuickEvent
 //
 //  Created by Kamil Zachara on 29/11/2024.
 //
 
-struct TMResponse: Codable {
-    let embedded: Embedded
+
+struct TMResponseRemote: Codable {
+    let embedded: EmbeddedEventsRemote
 
     enum CodingKeys: String, CodingKey {
         case embedded = "_embedded"
