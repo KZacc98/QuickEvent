@@ -27,8 +27,9 @@ class Coordinator: ObservableObject {
         switch screen {
         case .home:
             HomeView(viewModel: HomeViewModel(eventsService: EventsService(networkManager: NetworkManager())))
-        case .details(data: let data):
-            DetailsView(data: data)
+        case .details(viewModel: let viewModel):
+            DetailsView(viewModel: viewModel)
+                .navigationTitle("Event Details")
         }
     }
 }

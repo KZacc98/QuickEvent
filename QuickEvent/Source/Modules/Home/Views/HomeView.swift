@@ -27,15 +27,12 @@ struct HomeView: View {
                 EventListItemView(item: EventListItem(
                     title: event.name ?? "title",
                     eventDate: event.startDate ?? "desc1",
-                    city: event.venueDetails?.first?.city ?? "desc2",
-                    venueName: event.venueDetails?.first?.name ?? "desc3",
-                    imageUrl: event.bestSixteenByNineImage?.url ?? ""))
+                    city: event.venueDetails.first?.city ?? "desc2",
+                    venueName: event.venueDetails.first?.name ?? "desc3",
+                    imageUrl: event.bestThreeByTwoImage?.url))
                 .padding(.vertical, 8)
                 .onTapGesture {
-                    coordinator.push(.details(data: [
-                        event.name ?? "name",
-                        event.startDate ?? "start",
-                        event.venueDetails?.first?.name ?? "venue name"]))
+                    coordinator.push(.details(viewModel: DetailsViewModel(event: event)))
                 }
                 .onAppear {
                     if event == viewModel.events.last {

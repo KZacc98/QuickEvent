@@ -13,5 +13,5 @@ struct EventListItem: Identifiable {
     let eventDate: String
     let city: String
     let venueName: String
-    let imageUrl: String
+    let imageUrl: URL?
 }

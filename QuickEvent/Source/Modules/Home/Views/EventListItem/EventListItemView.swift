@@ -13,7 +13,7 @@ struct EventListItemView: View {
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .topLeading) {
-                AsyncImage(url: URL(string: item.imageUrl)) { image in
+                AsyncImage(url: item.imageUrl) { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -58,5 +58,10 @@ struct EventListItemView: View {
 }
 
 #Preview {
-    EventListItemView(item: EventListItem(title: "Title", eventDate: "12.12.2024", city: "Warsaw", venueName: "PGE Narodowy", imageUrl: "https://s1.ticketm.net/dam/a/e8c/5265b9d2-a06c-4dc8-a432-a8dd9d042e8c_RETINA_PORTRAIT_3_2.jpg"))
+    EventListItemView(item: EventListItem(
+        title: "Title",
+        eventDate: "12.12.2024",
+        city: "Warsaw",
+        venueName: "PGE Narodowy",
+        imageUrl: URL(optionalString: "https://s1.ticketm.net/dam/a/e8c/5265b9d2-a06c-4dc8-a432-a8dd9d042e8c_RETINA_PORTRAIT_3_2.jpg")))
 }

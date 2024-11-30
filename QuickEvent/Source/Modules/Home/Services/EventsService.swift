@@ -11,14 +11,14 @@ import Combine
 class EventsService {
     private let networkManager: NetworkManager
     private let apiKey = ""
-    private let baseURL = "https://app.ticketmaster.com/discovery/v2/events.json"
+    private let baseURL = "https://app.ticketmaster.com/discovery/v2/events"
     
     init(networkManager: NetworkManager) {
         self.networkManager = networkManager
     }
     
     func getEvents(page: Int, pageSize: Int) -> AnyPublisher<[EventDomain], Error> {
-        let urlString = "\(baseURL)?countryCode=PL&page=\(page)&size=\(pageSize)&sort=date,asc&apikey=\(apiKey)"
+        let urlString = "\(baseURL)?countryCode=PL&page=\(page)&size=\(pageSize)&apikey=\(apiKey)"//&sort=date,asc
         guard let url = URL(string: urlString) else {
             return Fail(error: NetworkError.badRequest(statusCode: 400)).eraseToAnyPublisher()
         }

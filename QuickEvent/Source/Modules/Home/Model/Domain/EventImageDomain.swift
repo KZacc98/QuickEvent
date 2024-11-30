@@ -5,10 +5,12 @@
 //  Created by Kamil Zachara on 29/11/2024.
 //
 
+import Foundation
 
-struct EventImageDomain: Equatable {
+struct EventImageDomain: Equatable, Identifiable {
+    let id: UUID = UUID()
     let ratio: ImageRatio
-    let url: String?
+    let url: URL?
     let width: Int
     let height: Int
     let fallback: Bool?
