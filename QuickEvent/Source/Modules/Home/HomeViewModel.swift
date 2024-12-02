@@ -9,17 +9,18 @@ import SwiftUI
 import Combine
 
 class HomeViewModel: ObservableObject {
+    @EnvironmentObject var coordinator: Coordinator
     @Published var events: [EventDomain] = []
     @Published var errorMessage: String?
+    @Published var isLoading = false
     
     private var cancellables = Set<AnyCancellable>()
     private let eventsService: EventsService?
     private var currentPage = 0
     private var pageSize = 20
-    private var isLoading = false
     private var hasMoreData = true
 
-
+ 
     init(eventsService: EventsService?, events: [EventDomain] = []) {
         self.eventsService = eventsService
         self.events = events
@@ -49,6 +50,30 @@ class HomeViewModel: ObservableObject {
                 }
             })
             .store(in: &cancellables)
+    }
+    
+    func shouldLoadMoreEvents(currentItem: EventDomain) -> Bool {
+        guard let lastEvent = events.last else {
+            return false
+        }
+        
+        return currentItem.id == lastEvent.id && hasMoreData && !isLoading
+    }
+    
+    func getEvent(by id: String) async -> EventDomain? {
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            let fetchedEvent = try await eventsService?.getEventDetails(eventId: id)
+            return fetchedEvent
+        } catch {
+            DispatchQueue.main.async {
+                self.errorMessage = "Failed to fetch event details: \(error.localizedDescription)"
+            }
+            
+            return nil
+        }
     }
 }
 

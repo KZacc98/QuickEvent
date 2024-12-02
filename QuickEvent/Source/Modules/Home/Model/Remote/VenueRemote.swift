@@ -13,18 +13,28 @@ struct VenueRemote: Codable, Equatable {
     let test: Bool?
     let url: String?
     let locale: String?
+    let location: LocationRemote?
     let postalCode: String?
     let timezone: String?
     let city: String?
     let state: String?
     let address: String?
+    let country: String?
 
     enum CodingKeys: String, CodingKey {
-        case name, type, id, test, url, locale, postalCode, timezone, city, address
+        case name, type, id, test, url, locale, location, postalCode, timezone, city, address, country, state
     }
     
     enum AddressCodingKeys: String, CodingKey {
         case line1
+    }
+    
+    enum StateCodingKeys: String, CodingKey {
+        case name
+    }
+    
+    enum CountryCodingKeys: String, CodingKey {
+        case name
     }
 
     init(from decoder: Decoder) throws {
@@ -36,6 +46,7 @@ struct VenueRemote: Codable, Equatable {
         test = try container.decodeIfPresent(Bool.self, forKey: .test)
         url = try container.decodeIfPresent(String.self, forKey: .url)
         locale = try container.decodeIfPresent(String.self, forKey: .locale)
+        location = try? container.decodeIfPresent(LocationRemote.self, forKey: .location)
         postalCode = try container.decodeIfPresent(String.self, forKey: .postalCode)
         timezone = try container.decodeIfPresent(String.self, forKey: .timezone)
 
@@ -45,7 +56,7 @@ struct VenueRemote: Codable, Equatable {
             city = nil
         }
 
-        if let stateContainer = try? container.nestedContainer(keyedBy: CodingKeys.self, forKey: .city) {
+        if let stateContainer = try? container.nestedContainer(keyedBy: StateCodingKeys.self, forKey: .state) {
             state = try stateContainer.decodeIfPresent(String.self, forKey: .name)
         } else {
             state = nil
@@ -55,6 +66,12 @@ struct VenueRemote: Codable, Equatable {
             address = try addressContainer.decodeIfPresent(String.self, forKey: .line1)
         } else {
             address = nil
+        }
+        
+        if let countryContainer = try? container.nestedContainer(keyedBy: CountryCodingKeys.self, forKey: .country) {
+            country = try countryContainer.decodeIfPresent(String.self, forKey: .name)
+        } else {
+            country = nil
         }
     }
     
@@ -66,10 +83,13 @@ struct VenueRemote: Codable, Equatable {
             test: test,
             url: url,
             locale: locale,
+            location: location?.toDomain(),
             postalCode: postalCode,
             timezone: timezone,
             city: city,
             state: state,
-            address: address)
+            address: address,
+            country: country
+        )
     }
 }

@@ -20,7 +20,7 @@ struct EventDomain: Identifiable, Equatable {
     let images: [EventImageDomain]
     let venueDetails: [VenueDomain]
     let attractions: [AttractionDomain]
-    let startDate: String?
+    let dates: EventDatesDomain?
     let sales: SalesDomain?
     let classifications: [ClassificationDomain]
     let promoter: PromoterDomain?

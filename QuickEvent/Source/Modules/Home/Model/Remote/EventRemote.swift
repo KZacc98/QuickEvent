@@ -84,7 +84,7 @@ struct EventRemote: Codable, Identifiable, Equatable {
             images: images?.compactMap { $0.toDomain() } ?? [],
             venueDetails: venueDetails?.compactMap { $0.toDomain() } ?? [],
             attractions: attractions?.compactMap { $0.toDomain() } ?? [],
-            startDate: dates?.start?.localDate,
+            dates: dates?.toDomain(),
             sales: sales?.toDomain(),
             classifications: classifications?.compactMap { $0.toDomain() } ?? [],
             promoter: promoter?.toDomain(),
@@ -94,3 +94,5 @@ struct EventRemote: Codable, Identifiable, Equatable {
         )
     }
 }
+
+

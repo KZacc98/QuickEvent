@@ -6,7 +6,6 @@
 //
 
 
-
 struct StartDateRemote: Codable {
     let localDate: String?
     let localTime: String?
@@ -15,4 +14,29 @@ struct StartDateRemote: Codable {
     let dateTBA: Bool?
     let timeTBA: Bool?
     let noSpecificTime: Bool?
+    
+    func toDomain() -> StartDateDomain {
+        StartDateDomain(
+            localDate: localDate?.toDate(),
+            localTime: localTime,
+            dateTime: dateTime?.toDateTime(),
+            dateTBD: dateTBD ?? false,
+            dateTBA: dateTBA ?? false,
+            timeTBA: timeTBA ?? false,
+            noSpecificTime: noSpecificTime ?? false
+        )
+    }
+}
+
+
+import Foundation
+
+struct StartDateDomain {
+    let localDate: Date?
+    let localTime: String?
+    let dateTime: Date?
+    let dateTBD: Bool
+    let dateTBA: Bool
+    let timeTBA: Bool
+    let noSpecificTime: Bool
 }

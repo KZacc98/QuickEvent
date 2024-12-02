@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct DetailsView: View {
     @StateObject var viewModel: DetailsViewModel
@@ -39,8 +40,13 @@ struct DetailsView: View {
                     DetailsEventInfo(
                         eventName: viewModel.event.name ?? "event name",
                         attractionName: viewModel.event.attractions.first?.name ?? "attractionName",
-                        eventStartDateTime: viewModel.event.startDate?.description ?? "eventdate"
+                        eventDates: viewModel.event.dates?.start
                     )
+                    
+                    ForEach(viewModel.event.venueDetails) { venue in
+                        
+                        EventLocationInfoView(venueName: venue.name ?? "", address: venue.addressString, venueLocation: venue.location)
+                    }
                 }
             }
         }

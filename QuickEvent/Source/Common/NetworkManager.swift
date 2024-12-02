@@ -9,41 +9,42 @@ import Foundation
 import Combine
 
 class NetworkManager {
-    func fetch<T: Decodable>(url: URL) -> AnyPublisher<T, NetworkError> {
-        URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap { result -> Data in
-                guard let httpResponse = result.response as? HTTPURLResponse else {
-                    throw NetworkError.unknown
+    func fetch(from url: URL) -> AnyPublisher<Data, Error> {
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap { output -> Data in
+                guard let httpResponse = output.response as? HTTPURLResponse else {
+                    throw URLError(.badServerResponse, userInfo: [NSLocalizedDescriptionKey: "Invalid response from the server."])
                 }
-                switch httpResponse.statusCode {
-                case 200...299:
-                    return result.data
-                case 400:
-                    throw NetworkError.badRequest(statusCode: httpResponse.statusCode)
-                case 401:
-                    throw NetworkError.unauthorized
-                case 403:
-                    throw NetworkError.forbidden
-                case 404:
-                    throw NetworkError.notFound
-                case 500...599:
-                    throw NetworkError.serverError(statusCode: httpResponse.statusCode)
-                default:
-                    throw NetworkError.unknown
+                
+                guard 200..<300 ~= httpResponse.statusCode else {
+                    throw URLError(.badServerResponse, userInfo: [
+                        NSLocalizedDescriptionKey: "Server returned an error with status code: \(httpResponse.statusCode)",
+                        "HTTPStatusCode": httpResponse.statusCode
+                    ])
                 }
-            }
-            .decode(type: T.self, decoder: JSONDecoder())
-            .mapError { error -> NetworkError in
-                if let networkError = error as? NetworkError {
-                    return networkError
-                } else if let decodingError = error as? DecodingError {
-                    return NetworkError.dataCorrupted(description: decodingError.localizedDescription)
-                } else if (error as NSError).code == URLError.timedOut.rawValue {
-                    return NetworkError.timeout
-                } else {
-                    return NetworkError.unknown
-                }
+                return output.data
             }
             .eraseToAnyPublisher()
+    }
+    
+    func fetch(from url: URL) async -> Result<Data, Error> {
+        do {
+            let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url))
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return .failure(URLError(.badServerResponse, userInfo: [NSLocalizedDescriptionKey: "Invalid response from the server."]))
+            }
+            
+            guard 200..<300 ~= httpResponse.statusCode else {
+                return .failure(URLError(.badServerResponse, userInfo: [
+                    NSLocalizedDescriptionKey: "Server returned an error with status code: \(httpResponse.statusCode)",
+                    "HTTPStatusCode": httpResponse.statusCode
+                ]))
+            }
+            
+            return .success(data)
+        } catch {
+            return .failure(error)
+        }
     }
 }

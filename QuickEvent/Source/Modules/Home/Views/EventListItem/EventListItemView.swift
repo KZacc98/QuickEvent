@@ -30,6 +30,7 @@ struct EventListItemView: View {
                 }
                 Text(item.eventDate)
                     .font(.caption)
+                    .fontWeight(.bold)
                     .foregroundColor(.black)
                     .padding(8)
                     .background(.ultraThinMaterial)
@@ -37,23 +38,24 @@ struct EventListItemView: View {
                     .padding(8)
             }
             
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text(item.title)
                     .font(.headline)
-                    .foregroundColor(.black)
+                    .foregroundStyle(Color("BabyPowder"))
+                    .padding([.horizontal, .top], 10)
                 Text(item.city)
                     .font(.subheadline)
-                    .foregroundColor(.black)
+                    .foregroundStyle(Color("BabyPowder"))
+                    .padding(.horizontal, 10)
                 Text(item.venueName)
                     .font(.subheadline)
-                    .foregroundColor(.black)
+                    .foregroundStyle(Color("BabyPowder"))
+                    .padding([.leading, .bottom, .trailing], 10)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .background(Color.blue)
+            .frame(width: 320, alignment: .leading)
+            .background(Color("LapisBlue"))
             .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
         }
-        .cornerRadius(20)
     }
 }
 

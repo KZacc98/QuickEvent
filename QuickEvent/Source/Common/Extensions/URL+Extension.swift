@@ -12,6 +12,7 @@ extension URL {
         guard let urlString = optionalString, let url = URL(string: urlString) else {
             return nil
         }
+        
         self = url
     }
 }

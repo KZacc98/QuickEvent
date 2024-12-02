@@ -9,4 +9,12 @@ struct EventDatesRemote: Codable {
     let start: StartDateRemote?
     let timezone: String?
     let spanMultipleDays: Bool?
+    
+    func toDomain() -> EventDatesDomain {
+        EventDatesDomain(
+            start: start?.toDomain(),
+            timezone: timezone,
+            spanMultipleDays: spanMultipleDays ?? false
+        )
+    }
 }

@@ -23,28 +23,40 @@ struct HomeView: View {
                     .foregroundColor(.red)
                     .padding()
             }
-            List(viewModel.events) { event in
-                EventListItemView(item: EventListItem(
-                    title: event.name ?? "title",
-                    eventDate: event.startDate ?? "desc1",
-                    city: event.venueDetails.first?.city ?? "desc2",
-                    venueName: event.venueDetails.first?.name ?? "desc3",
-                    imageUrl: event.bestThreeByTwoImage?.url))
-                .padding(.vertical, 8)
-                .onTapGesture {
-                    coordinator.push(.details(viewModel: DetailsViewModel(event: event)))
-                }
-                .onAppear {
-                    if event == viewModel.events.last {
-                        viewModel.getEvents()
+            ScrollView(content: {
+                LazyVStack {
+                    ForEach(viewModel.events) { event in
+                        EventListItemView(item: EventListItem(
+                            title: event.name ?? "title",
+                            eventDate: event.dates?.start?.localDate?.formatted() ?? "desc1",
+                            city: event.venueDetails.first?.city ?? "desc2",
+                            venueName: event.venueDetails.first?.name ?? "desc3",
+                            imageUrl: event.bestThreeByTwoImage?.url))
+                        .padding(.vertical, 8)
+                        .onTapGesture {
+                            Task {
+                                guard let eventDetails = await viewModel.getEvent(by: event.id) else { return }
+                                coordinator.push(.details(viewModel: DetailsViewModel(event: eventDetails)))
+                            }
+                        }
+                        .onAppear {
+                            if viewModel.shouldLoadMoreEvents(currentItem: event) {
+                                viewModel.getEvents()
+                            }
+                        }
                     }
                 }
-            }
-            .ignoresSafeArea(.all)
+            })
+            
         }
         .onAppear {
             if viewModel.events.isEmpty {
                 viewModel.getEvents()
+            }
+        }
+        .overlay {
+            if viewModel.isLoading {
+                ProgressView()
             }
         }
     }
