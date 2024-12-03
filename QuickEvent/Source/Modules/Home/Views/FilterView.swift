@@ -14,12 +14,12 @@ struct FilterView: View {
     
     var body: some View {
         VStack {
-            Text("Date")
+            Text("date".localized)
                 .padding(.top, 40)
-            Picker("Date", selection: $eventDateOrder) {
-                Text("Descending").tag(FilterType.descending)
-                Text("Recomended").tag(FilterType.recommended)
-                Text("Ascending").tag(FilterType.ascending)
+            Picker("date".localized, selection: $eventDateOrder) {
+                Text("descending".localized).tag(FilterType.descending)
+                Text("recomended".localized).tag(FilterType.recommended)
+                Text("ascending".localized).tag(FilterType.ascending)
             }
             .pickerStyle(.segmented)
             .padding(.horizontal, 20)

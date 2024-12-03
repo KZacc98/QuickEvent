@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  QuickEvent
+
+  Created by Kamil Zachara on 03/12/2024.
+  
+*/
+
+//Home
+
+"events" = "Events";
+"noEvents" = "There are no events at the moment, try again later";
+"tryAgain" = "Try Again";
+
+//Details
+
+"eventDetails" = "Event Details";
+"venueInformation" = "Venue Information";
+"eventInformation" = "Event information";
+"loadingMap" = "Loading Map...";
+"loading" = "Loading...";
+"priceMin" = "Lowest Price";
+"priceMax" = "Highest Price";
+"additionalInfo" = "Additional Information";
+"selectedLocation" = "Selected Location";
+"timeTBA" = "Time TBA, %@";
+"dateTBD" = "Date TBD";
+"dateTBA" = "Date TBA";
+
+//Filter
+
+"date" = "Date";
+"descending" = "Descending";
+"recomended" = "Recomended";
+"ascending" = "Ascending";
+
+//Errors
+
+"invalidResponse" = "Invalid response from the server.";
+"errorWithCode" = "Server returned an error with status code: %d";
+"badURL" = "Invalid URL provided.";
+"failedToFetchEvents" = "Failed to fetch events: %@";
+"failedToFetchEventDetails" = "Failed to fetch event details: %@";

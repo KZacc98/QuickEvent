@@ -26,10 +26,10 @@ struct HomeView: View {
                 LazyVStack {
                     ForEach(viewModel.events) { event in
                         EventListItemView(item: EventListItem(
-                            title: event.name ?? "title",
-                            eventDate: event.dates?.start?.localDate?.dateAsString() ?? "desc1",
-                            city: event.venueDetails.first?.city ?? "desc2",
-                            venueName: event.venueDetails.first?.name ?? "desc3",
+                            title: event.name,
+                            eventDate: event.dates?.start?.localDate?.dateAsString(),
+                            city: event.venueDetails.first?.city,
+                            venueName: event.venueDetails.first?.name,
                             imageUrl: event.bestThreeByTwoImage?.url))
                         .padding(.vertical, 8)
                         .onTapGesture {
@@ -53,40 +53,58 @@ struct HomeView: View {
             }
         }
         .overlay {
-            if let errorMessage = viewModel.errorMessage, showError {
-                VStack {
-                    Spacer()
-                    Text(errorMessage)
-                        .foregroundColor(Color.white)
-                        .padding()
-                        .background(Color.red)
-                        .cornerRadius(15, corners: [.topLeft, .topRight])
-                        .onAppear {
-                            withAnimation(.easeIn(duration: 0.5)) {
-                                showError = true
-                            }
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                                withAnimation(.easeOut(duration: 0.5)) {
-                                    showError = false
+            ZStack {
+                if viewModel.events.isEmpty && viewModel.isLoading == false {
+                    VStack {
+                        Image(systemName: "questionmark.circle.fill")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .foregroundStyle(Color.gray)
+                        Text("noEvents".localized)
+                            .font(.body)
+                            .fontWeight(.medium)
+                        Button ("tryAgain".localized) {
+                            showError = true
+                            viewModel.refreshEvents(eventDateOrder: eventDateOrder)
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                }
+                if let errorMessage = viewModel.errorMessage, showError {
+                    VStack {
+                        Spacer()
+                        Text(errorMessage)
+                            .foregroundColor(Color.white)
+                            .padding()
+                            .background(Color.red)
+                            .cornerRadius(15, corners: [.topLeft, .topRight])
+                            .onAppear {
+                                withAnimation(.easeIn(duration: 0.5)) {
+                                    showError = true
+                                }
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                    withAnimation(.easeOut(duration: 0.5)) {
+                                        showError = false
+                                    }
                                 }
                             }
-                        }
+                    }
                 }
-            }
-            
-            if viewModel.isLoading {
-                withAnimation(.easeInOut(duration: 0.5)) {
-                    ZStack {
-                        Rectangle()
-                            .background(.thinMaterial)
-                            .frame(width: 50, height: 50)
-                            .cornerRadius(15, corners: .allCorners)
-                        
-                        ProgressView()
-                            .scaleEffect(2.0)
-                            .tint(Color.babyPowder)
-                            .frame(width: 50, height: 50)
+                
+                if viewModel.isLoading {
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        ZStack {
+                            Rectangle()
+                                .background(.thinMaterial)
+                                .frame(width: 50, height: 50)
+                                .cornerRadius(15, corners: .allCorners)
+                            
+                            ProgressView()
+                                .scaleEffect(2.0)
+                                .tint(Color.babyPowder)
+                                .frame(width: 50, height: 50)
+                        }
                     }
                 }
             }

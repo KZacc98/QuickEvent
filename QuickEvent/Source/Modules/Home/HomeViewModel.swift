@@ -37,7 +37,7 @@ class HomeViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
-                    self?.errorMessage = "Failed to fetch events: \(error.localizedDescription)"
+                    self?.errorMessage = String(format: "failedToFetchEvents".localized, error.localizedDescription)
                     self?.hasMoreData = false
                 }
             }, receiveValue: { [weak self] response in
@@ -79,7 +79,7 @@ class HomeViewModel: ObservableObject {
             return fetchedEvent
         } catch {
             DispatchQueue.main.async {
-                self.errorMessage = "Failed to fetch event details: \(error.localizedDescription)"
+                self.errorMessage = String(format: "failedToFetchEventDetails".localized, error.localizedDescription)
             }
             
             return nil

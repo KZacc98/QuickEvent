@@ -14,8 +14,8 @@ struct DetailsEventInfoView: View {
     private var eventType: String?
     
     init(
-        eventName: String? = "eventName",
-        attractionName: String? = "attractionName",
+        eventName: String? = "EventName",
+        attractionName: String? = "AttractionName",
         eventDate: String? = "EventDate",
         eventType: String? = "EventType") {
             self.eventName = eventName
@@ -61,73 +61,3 @@ struct DetailsEventInfoView: View {
         }
     }
 }
-
-//#Preview {
-//    VStack {
-//        // Case 1: Full date and time specified
-//        DetailsEventInfoView(eventDates: StartDateDomain(
-//            localDate: Date(),
-//            localTime: nil,
-//            dateTime: Date(),
-//            dateTBD: false,
-//            dateTBA: false,
-//            timeTBA: false,
-//            noSpecificTime: false
-//        ))
-//        
-//        // Case 2: Time TBA (no specific time)
-//        DetailsEventInfoView(eventDates: StartDateDomain(
-//            localDate: Date(),
-//            localTime: nil,
-//            dateTime: nil,
-//            dateTBD: false,
-//            dateTBA: false,
-//            timeTBA: true,
-//            noSpecificTime: true
-//        ))
-//        
-//        // Case 3: Date TBD
-//        DetailsEventInfoView(eventDates: StartDateDomain(
-//            localDate: nil,
-//            localTime: nil,
-//            dateTime: nil,
-//            dateTBD: true,
-//            dateTBA: false,
-//            timeTBA: false,
-//            noSpecificTime: false
-//        ))
-//        
-//        // Case 4: Date TBA
-//        DetailsEventInfoView(eventDates: StartDateDomain(
-//            localDate: nil,
-//            localTime: nil,
-//            dateTime: nil,
-//            dateTBD: false,
-//            dateTBA: true,
-//            timeTBA: false,
-//            noSpecificTime: false
-//        ))
-//        
-//        // Case 5: No specific time but date exists
-//        DetailsEventInfoView(eventDates: StartDateDomain(
-//            localDate: Date(),
-//            localTime: nil,
-//            dateTime: nil,
-//            dateTBD: false,
-//            dateTBA: false,
-//            timeTBA: false,
-//            noSpecificTime: true
-//        ))
-//        
-//        // Case 6: Fully populated with local time specified
-//        DetailsEventInfoView(eventDates: StartDateDomain(
-//            localDate: Date(),
-//            localTime: "12:00",
-//            dateTime: Date(),
-//            dateTBD: false,
-//            dateTBA: false,
-//            timeTBA: false,
-//            noSpecificTime: false
-//        ))
-//    }
-//}

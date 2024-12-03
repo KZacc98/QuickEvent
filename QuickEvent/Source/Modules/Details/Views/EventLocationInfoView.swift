@@ -13,8 +13,8 @@ struct EventLocationInfoView: View {
     private var address: String
     private var venueLocation: LocationDomain?
     
-    init(venueName: String = "venueName",
-         address: String = "address",
+    init(venueName: String = "VenueName",
+         address: String = "Address",
          venueLocation: LocationDomain? = LocationDomain(longitude: 21.04598, latitude: 52.23958)) {
         self.venueName = venueName
         self.address = address
@@ -24,7 +24,7 @@ struct EventLocationInfoView: View {
     var body: some View {
         BaseCardView(
             infoImage: Image(systemName: "mappin.circle.fill"),
-            infoText: "Venue Information",
+            infoText: "venueInformation".localized,
             showChevron: true) {
             if let venueLocation {
                 HStack(alignment: .center) {

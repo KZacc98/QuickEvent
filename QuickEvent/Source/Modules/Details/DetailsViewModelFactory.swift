@@ -18,7 +18,7 @@ struct DetailsViewModelFactory {
         }
         
         if dates.timeTBA {
-            return "Time TBA, \(dates.localDate?.dateAsString() ?? "")"
+            return String(format: "timeTBA".localized, dates.localDate?.dateAsString() ?? "")
         }
         
         if dates.noSpecificTime {
@@ -26,11 +26,11 @@ struct DetailsViewModelFactory {
         }
         
         if dates.dateTBD {
-            return "Date TBD"
+            return "dateTBD".localized
         }
         
         if dates.dateTBA {
-            return "Date TBA"
+            return "dateTBA".localized
         }
         
         return nil

@@ -10,6 +10,7 @@ import Combine
 
 class EventsService {
     private let networkManager: NetworkManager
+#error("Provide your own API Key here, and comment that error")
     private let apiKey = ""
     private let baseURL = "https://app.ticketmaster.com/discovery/v2/events"
     
@@ -44,7 +45,7 @@ class EventsService {
     func getEventDetails(eventId: String) async throws -> EventDomain {
         let urlString = "\(baseURL)/\(eventId)?apikey=\(apiKey)"
         guard let url = URL(string: urlString) else {
-            throw URLError(.badURL, userInfo: [NSLocalizedDescriptionKey: "Invalid URL provided."])
+            throw URLError(.badURL, userInfo: [NSLocalizedDescriptionKey: "badURL".localized])
         }
         
         let result = await networkManager.fetch(from: url)

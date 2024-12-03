@@ -16,7 +16,7 @@ struct DetailsEventAdditionalInfoView: View {
     
     var body: some View {
         Link(destination: seatMapUrl) {
-            BaseCardView(infoImage: nil, infoText: "Additional Information", showChevron: true) {
+            BaseCardView(infoImage: nil, infoText: "additionalInfo".localized, showChevron: true) {
                 AsyncImage(url: seatMapUrl) { image in
                     image
                         .resizable()
@@ -24,7 +24,7 @@ struct DetailsEventAdditionalInfoView: View {
                         .cornerRadius(10)
                         .padding(.horizontal, 10)
                 } placeholder: {
-                    ProgressView("Loading...")
+                    ProgressView("loading".localized)
                         .tint(Color.babyPowder)
                         .foregroundColor(Color.babyPowder)
                 }

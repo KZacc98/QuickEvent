@@ -23,7 +23,7 @@ struct EventImagePagerView: View {
                         .scaledToFit()
                         .cornerRadius(15)
                 } placeholder: {
-                    ProgressView("Loading...")
+                    ProgressView("loading".localized)
                         .tint(Color.babyPowder)
                         .foregroundColor(Color.babyPowder)
                 }

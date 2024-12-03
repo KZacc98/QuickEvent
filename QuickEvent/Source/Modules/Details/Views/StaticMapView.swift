@@ -23,7 +23,7 @@ struct StaticMapView: View {
                         openInMaps()
                     }
             } else {
-                ProgressView("Loading Map...")
+                ProgressView("loadingMap".localized)
                     .tint(Color.babyPowder)
                     .foregroundColor(Color.babyPowder)
             }
@@ -75,7 +75,7 @@ struct StaticMapView: View {
         
         let placemark = MKPlacemark(coordinate: coordinates)
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = "Selected Location"
+        mapItem.name = "selectedLocation".localized
         mapItem.openInMaps(launchOptions: options)
     }
 }

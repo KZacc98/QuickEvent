@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct EventImageRemote: Codable {
     let ratio: String?
     let url: String?

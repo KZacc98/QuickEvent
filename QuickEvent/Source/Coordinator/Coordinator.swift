@@ -27,11 +27,11 @@ class Coordinator: ObservableObject {
         switch screen {
         case .home:
             HomeView(viewModel: HomeViewModel(eventsService: EventsService(networkManager: NetworkManager())))
-                .navigationTitle("Events")
+                .navigationTitle("events".localized)
                 .navigationBarTitleDisplayMode(.large)
         case .details(viewModel: let viewModel):
             DetailsView(viewModel: viewModel)
-                .navigationTitle("Event Details")
+                .navigationTitle("eventDetails".localized)
         }
     }
 }

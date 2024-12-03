@@ -20,7 +20,7 @@ struct DetailsTicketInfoView: View {
                 if let minPrice = pricing.min {
                     Spacer()
                     VStack {
-                        Text("Lowest Price")
+                        Text("priceMin".localized)
                             .font(.subheadline)
                             .fontWeight(.medium)
                             .foregroundColor(Color.babyPowder)
@@ -34,7 +34,7 @@ struct DetailsTicketInfoView: View {
                 
                 if let maxPrice = pricing.max {
                     VStack {
-                        Text("Highest Price")
+                        Text("priceMax".localized)
                             .font(.subheadline)
                             .fontWeight(.medium)
                             .foregroundColor(Color.babyPowder)

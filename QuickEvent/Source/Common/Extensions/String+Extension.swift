@@ -29,4 +29,13 @@ extension String {
         
         return self.prefix(1).capitalized + self.dropFirst()
     }
+    
+    var localized: String {
+        let preferred = NSLocale.preferredLanguages.first?.split(separator: "-").first.flatMap {
+            String($0) } ?? "en"
+        let languageBundle = Bundle.main.path(forResource: preferred, ofType: "lproj").flatMap {
+            Bundle(path: $0) } ?? Bundle.main
+        
+        return languageBundle.localizedString(forKey: self, value: self, table: nil)
+        }
 }

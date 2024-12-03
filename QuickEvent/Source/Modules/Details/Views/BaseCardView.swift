@@ -25,7 +25,6 @@ struct BaseCardView<Content: View>: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
-            
             HStack(spacing: 5) {
                 if let infoImage {
                     infoImage
