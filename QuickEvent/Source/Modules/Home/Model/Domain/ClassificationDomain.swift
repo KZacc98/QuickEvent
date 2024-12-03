@@ -11,4 +11,10 @@ struct ClassificationDomain {
     let genre: String?
     let subGenre: String?
     let family: Bool
+    
+    var description: String {
+        let components = [genre, subGenre]
+        
+        return components.compactMap { $0 }.joined(separator: ", ")
+    }
 }

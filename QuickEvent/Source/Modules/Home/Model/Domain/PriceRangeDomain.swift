@@ -6,7 +6,7 @@
 //
 
 
-struct PriceRangeDomain {
+struct PriceRangeDomain: Hashable {
     let type: String?
     let currency: String?
     let min: Double?

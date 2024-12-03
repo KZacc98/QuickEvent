@@ -28,6 +28,10 @@ struct EventDomain: Identifiable, Equatable {
     let priceRanges: [PriceRangeDomain]
     let seatmap: URL?
     
+    var usableImages: [EventImageDomain]? {
+        images.filter { $0.height > 200 }.sorted(by: { $0.height > $1.height })
+    }
+    
     var worstFourByThreeImage: EventImageDomain? {
         images.min(by: { $0.height < $1.height })
     }

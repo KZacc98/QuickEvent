@@ -16,6 +16,34 @@ class DetailsViewModel: ObservableObject {
     
     init(event: EventDomain) {
         self.event = event
-        images = event.images.compactMap { $0.url }
+        images = event.usableImages?.compactMap { $0.url } ?? []
+    }
+    
+    func makeDateString() -> String? {
+        guard let dates = event.dates?.start else {
+            return nil
+        }
+        
+        if let dateTime = dates.dateTime {
+            return dateTime.timeAndDateAsString()
+        }
+        
+        if dates.timeTBA {
+            return "Time TBA, \(dates.localDate?.dateAsString() ?? "")"
+        }
+        
+        if dates.noSpecificTime {
+            return nil
+        }
+        
+        if dates.dateTBD {
+            return "Date TBD"
+        }
+        
+        if dates.dateTBA {
+            return "Date TBA"
+        }
+        
+        return nil
     }
 }

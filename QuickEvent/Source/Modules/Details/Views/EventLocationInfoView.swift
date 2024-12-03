@@ -22,17 +22,10 @@ struct EventLocationInfoView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            HStack(spacing: 5) {
-                Image(systemName: "mappin.circle.fill")
-                    .foregroundColor(Color("BabyPowder"))
-                
-                Text("Venue Information")
-                    .fontWeight(.thin)
-                    .foregroundStyle(Color("BabyPowder"))
-            }
-            .padding([.top, .leading], 10)
-            
+        BaseCardView(
+            infoImage: Image(systemName: "mappin.circle.fill"),
+            infoText: "Venue Information",
+            showChevron: true) {
             if let venueLocation {
                 HStack(alignment: .center) {
                     Spacer()
@@ -53,23 +46,16 @@ struct EventLocationInfoView: View {
                 .minimumScaleFactor(0.5)
                 .lineLimit(3)
                 .foregroundStyle(Color("BabyPowder"))
-                .frame(minWidth: 320, maxWidth: 320, minHeight: 20, maxHeight: 75, alignment: .leading)
-                .padding(.horizontal, 10)
-            
+                .frame(minWidth: 320, maxWidth: 320, minHeight: 20, maxHeight: 75, alignment: .center)            
             Text(address)
                 .font(.title3)
                 .fontWeight(.medium)
                 .minimumScaleFactor(0.5)
                 .lineLimit(3)
                 .foregroundStyle(Color("BabyPowder"))
-                .frame(minWidth: 320, maxWidth: 320, minHeight: 20, maxHeight: 50, alignment: .leading)
-                .padding([.horizontal, .bottom], 10)
-            
+                .frame(minWidth: 320, maxWidth: 320, minHeight: 20, maxHeight: 50, alignment: .center)
+                .padding(.bottom, 10)
         }
-        .frame(maxWidth: 350)
-        .background(Color("LapisBlue"))
-        .shadow(radius: 10)
-        .cornerRadius(15, corners: .allCorners)
     }
 }
 

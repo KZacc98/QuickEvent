@@ -23,4 +23,10 @@ extension String {
         
         return dateFormatter.date(from: self)
     }
+    
+    func capitalizeFirstLetter() -> String {
+        guard !self.isEmpty else { return self }
+        
+        return self.prefix(1).capitalized + self.dropFirst()
+    }
 }

@@ -15,4 +15,8 @@ struct AttractionDomain {
     let externalLinks: ExternalLinksDomain?
     let images: [EventImageDomain]
     let classifications: [ClassificationDomain]
+    
+    var bestThreeByTwoImage: EventImageDomain? {
+        images.filter { $0.ratio == .threeByTwo }.max(by: { $0.height < $1.height })
+    }
 }

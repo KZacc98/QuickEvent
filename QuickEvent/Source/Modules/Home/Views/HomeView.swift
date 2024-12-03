@@ -59,6 +59,11 @@ struct HomeView: View {
                 ProgressView()
             }
         }
+        .navigationBarItems(trailing: Button(action: {
+            print("Filtrowanko")
+        }) {
+            Image(systemName: "gear")
+        })
     }
 }
 
