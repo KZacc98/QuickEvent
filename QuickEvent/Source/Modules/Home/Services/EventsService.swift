@@ -17,8 +17,17 @@ class EventsService {
         self.networkManager = networkManager
     }
     
-    func getEvents(page: Int, pageSize: Int) -> AnyPublisher<[EventDomain], Error> {
-        let urlString = "\(baseURL)?countryCode=PL&page=\(page)&size=\(pageSize)&apikey=\(apiKey)" // &sort=date,asc
+    func getEvents(page: Int, pageSize: Int, dateAsc: Bool = false, dateDesc: Bool = false) -> AnyPublisher<[EventDomain], Error> {
+        var urlString = "\(baseURL)?countryCode=PL&page=\(page)&size=\(pageSize)&apikey=\(apiKey)"
+        
+        if dateAsc {
+            urlString.append("&sort=date,asc")
+        }
+        
+        if dateDesc {
+            urlString.append("&sort=date,desc")
+        }
+        
         guard let url = URL(string: urlString) else {
             return Fail(error: NetworkError.badRequest(statusCode: 400)).eraseToAnyPublisher()
         }

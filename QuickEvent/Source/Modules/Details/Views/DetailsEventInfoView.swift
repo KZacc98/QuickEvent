@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct DetailsEventInfoView: View {
-    var eventName: String?
-    var attractionName: String?
-    var eventDate: String?
-    var eventType: String?
+    private var eventName: String?
+    private var attractionName: String?
+    private var eventDate: String?
+    private var eventType: String?
     
     init(
         eventName: String? = "eventName",

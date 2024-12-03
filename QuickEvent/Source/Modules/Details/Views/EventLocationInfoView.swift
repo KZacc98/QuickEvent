@@ -9,9 +9,9 @@ import SwiftUI
 import MapKit
 
 struct EventLocationInfoView: View {
-    var venueName: String
-    var address: String
-    var venueLocation: LocationDomain?
+    private var venueName: String
+    private var address: String
+    private var venueLocation: LocationDomain?
     
     init(venueName: String = "venueName",
          address: String = "address",
@@ -45,14 +45,15 @@ struct EventLocationInfoView: View {
                 .fontWeight(.semibold)
                 .minimumScaleFactor(0.5)
                 .lineLimit(3)
-                .foregroundStyle(Color("BabyPowder"))
-                .frame(minWidth: 320, maxWidth: 320, minHeight: 20, maxHeight: 75, alignment: .center)            
+                .foregroundStyle(Color.babyPowder)
+                .frame(minWidth: 320, maxWidth: 320, minHeight: 20, maxHeight: 75, alignment: .center)
+                
             Text(address)
                 .font(.title3)
                 .fontWeight(.medium)
                 .minimumScaleFactor(0.5)
                 .lineLimit(3)
-                .foregroundStyle(Color("BabyPowder"))
+                .foregroundStyle(Color.babyPowder)
                 .frame(minWidth: 320, maxWidth: 320, minHeight: 20, maxHeight: 50, alignment: .center)
                 .padding(.bottom, 10)
         }

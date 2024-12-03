@@ -28,32 +28,42 @@ struct EventListItemView: View {
                         ProgressView()
                     }
                 }
-                Text(item.eventDate)
-                    .font(.caption)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-                    .padding(8)
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(10)
-                    .padding(8)
+                
+                if let eventDate = item.eventDate {
+                    Text(eventDate)
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .padding(8)
+                        .background(.ultraThinMaterial)
+                        .cornerRadius(10)
+                        .padding(8)
+                }
             }
             
             VStack(alignment: .leading, spacing: 5) {
-                Text(item.title)
-                    .font(.headline)
-                    .foregroundStyle(Color("BabyPowder"))
-                    .padding([.horizontal, .top], 10)
-                Text(item.city)
-                    .font(.subheadline)
-                    .foregroundStyle(Color("BabyPowder"))
-                    .padding(.horizontal, 10)
-                Text(item.venueName)
-                    .font(.subheadline)
-                    .foregroundStyle(Color("BabyPowder"))
-                    .padding([.leading, .bottom, .trailing], 10)
+                if let title = item.title {
+                    Text(title)
+                        .font(.headline)
+                        .foregroundStyle(Color.babyPowder)
+                        .padding([.horizontal, .top], 10)
+                }
+                
+                if let city = item.city {
+                    Text(city)
+                        .font(.subheadline)
+                        .foregroundStyle(Color.babyPowder)
+                        .padding(.horizontal, 10)
+                }
+                
+                if let venueName = item.venueName {
+                    Text(venueName)
+                        .font(.subheadline)
+                        .foregroundStyle(Color.babyPowder)
+                        .padding([.leading, .bottom, .trailing], 10)
+                }
             }
             .frame(width: 320, alignment: .leading)
-            .background(Color("LapisBlue"))
+            .background(Color.lapisBlue)
             .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
         }
     }

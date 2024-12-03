@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct DetailsBackgroundView: View {
-    
-    var imageUrl: URL?
     @State private var imageLoaded = false
+    private var imageUrl: URL?
 
     init(imageUrl: URL?) {
         self.imageUrl = imageUrl

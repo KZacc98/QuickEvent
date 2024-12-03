@@ -30,6 +30,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		EF22AD9E2CFF51EB0091C378 /* Exceptions for "QuickEvent" folder in "QuickEventTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Source/Common/Extensions/Date+Extension.swift",
+				"Source/Common/Extensions/String+Extension.swift",
+				Source/Modules/Details/DetailsViewModelFactory.swift,
+				Source/Modules/Home/Model/Domain/EventImageDomain.swift,
+				Source/Modules/Home/Model/Domain/StartDateDomain.swift,
+				Source/Modules/Home/Model/ImageRatio.swift,
+			);
+			target = EF889A0D2CF77EAF0080F8FD /* QuickEventTests */;
+		};
 		EFC763532CF7AE5300688C79 /* Exceptions for "QuickEvent" folder in "QuickEvent" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -54,6 +66,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				EFC763532CF7AE5300688C79 /* Exceptions for "QuickEvent" folder in "QuickEvent" target */,
+				EF22AD9E2CFF51EB0091C378 /* Exceptions for "QuickEvent" folder in "QuickEventTests" target */,
 			);
 			path = QuickEvent;
 			sourceTree = "<group>";

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EventImagePagerView: View {
-    let images: [URL]
+    private let images: [URL]
     
     init(images: [URL]) {
         self.images = images
@@ -24,8 +24,8 @@ struct EventImagePagerView: View {
                         .cornerRadius(15)
                 } placeholder: {
                     ProgressView("Loading...")
-                        .tint(Color("BabyPowder"))
-                        .foregroundColor(Color("BabyPowder"))
+                        .tint(Color.babyPowder)
+                        .foregroundColor(Color.babyPowder)
                 }
             }
         }

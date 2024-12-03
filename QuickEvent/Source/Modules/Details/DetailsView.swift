@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MapKit
 
 struct DetailsView: View {
     @StateObject var viewModel: DetailsViewModel
@@ -21,16 +20,14 @@ struct DetailsView: View {
             DetailsBackgroundView(imageUrl: viewModel.event.worstFourByThreeImage?.url)
             ScrollView{
                 VStack {
-                    EventImagePagerView(images: viewModel.images)
+                    EventImagePagerView(images: viewModel.factory.makeImagesUrls(from: viewModel.event.usableImages))
                     
                     DetailsEventInfoView(
-                        eventName: viewModel.event.name ?? "",
-                        attractionName: viewModel.event.attractions.first?.name ?? "",
-                        eventDate: viewModel.makeDateString(),
-                        eventType: viewModel.event.classifications.first?.segment ?? ""
-                    ).onTapGesture {
-                        dump(viewModel.event.priceRanges)
-                    }
+                        eventName: viewModel.event.name,
+                        attractionName: viewModel.event.attractions.first?.name,
+                        eventDate: viewModel.factory.makeDateString(dates: viewModel.event.dates?.start),
+                        eventType: viewModel.event.classifications.first?.segment
+                    )
                     
                     ForEach(viewModel.event.priceRanges, id: \.self) { priceRange in
                         DetailsTicketInfoView(pricing: priceRange)
@@ -45,7 +42,7 @@ struct DetailsView: View {
                     }
                     
                     if let seatMapUrl = viewModel.event.seatmap {
-                        DetailsEventSeatMapView(seatMapUrl: seatMapUrl)
+                        DetailsEventAdditionalInfoView(seatMapUrl: seatMapUrl)
                     }
                 }
             }

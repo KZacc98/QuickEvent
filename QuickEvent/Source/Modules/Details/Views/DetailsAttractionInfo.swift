@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailsAttractionInfo: View {
-    var attraction: AttractionDomain
+    private var attraction: AttractionDomain
     
     init(attraction: AttractionDomain) {
         self.attraction = attraction
@@ -34,21 +34,26 @@ struct DetailsAttractionInfo: View {
                 }
             }
             
-            Text(attraction.name ?? "")
-                .font(.headline)
-                .fontWeight(.semibold)
-                .minimumScaleFactor(0.5)
-                .lineLimit(3)
-                .foregroundStyle(Color("BabyPowder"))
-                .frame(minWidth: 320, maxWidth: 320, minHeight: 20, maxHeight: 75, alignment: .center)
-            Text(attraction.classifications.first?.description ?? "")
-                .font(.title3)
-                .fontWeight(.medium)
-                .minimumScaleFactor(0.5)
-                .lineLimit(3)
-                .foregroundStyle(Color("BabyPowder"))
-                .frame(minWidth: 320, maxWidth: 320, minHeight: 20, maxHeight: 50, alignment: .center)
-                .padding(.bottom, 10)
+            if let attractioName = attraction.name {
+                Text(attractioName)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(3)
+                    .foregroundStyle(Color.babyPowder)
+                    .frame(minWidth: 320, maxWidth: 320, minHeight: 20, maxHeight: 75, alignment: .center)
+            }
+            
+            if let attractionDescription = attraction.classifications.first?.description {
+                Text(attractionDescription)
+                    .font(.title3)
+                    .fontWeight(.medium)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(3)
+                    .foregroundStyle(Color.babyPowder)
+                    .frame(minWidth: 320, maxWidth: 320, minHeight: 20, maxHeight: 50, alignment: .center)
+                    .padding(.bottom, 10)
+            }
             
             if let links = attraction.externalLinks {
                 ExternalLinksView(links: links)

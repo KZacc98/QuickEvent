@@ -9,9 +9,9 @@ import Foundation
 
 struct EventListItem: Identifiable {
     let id = UUID()
-    let title: String
-    let eventDate: String
-    let city: String
-    let venueName: String
+    let title: String?
+    let eventDate: String?
+    let city: String?
+    let venueName: String?
     let imageUrl: URL?
 }

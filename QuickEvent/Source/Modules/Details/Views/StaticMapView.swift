@@ -24,8 +24,8 @@ struct StaticMapView: View {
                     }
             } else {
                 ProgressView("Loading Map...")
-                    .tint(Color("BabyPowder"))
-                    .foregroundColor(Color("BabyPowder"))
+                    .tint(Color.babyPowder)
+                    .foregroundColor(Color.babyPowder)
             }
         }
         .onAppear {

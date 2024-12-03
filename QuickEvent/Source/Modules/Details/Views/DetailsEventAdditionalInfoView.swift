@@ -1,5 +1,5 @@
 //
-//  DetailsEventSeatMapView.swift
+//  DetailsEventAdditionalInfoView.swift
 //  QuickEvent
 //
 //  Created by Kamil Zachara on 03/12/2024.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct DetailsEventSeatMapView: View {
-    let seatMapUrl: URL
+struct DetailsEventAdditionalInfoView: View {
+    private let seatMapUrl: URL
     
     init(seatMapUrl: URL) {
         self.seatMapUrl = seatMapUrl
@@ -25,8 +25,8 @@ struct DetailsEventSeatMapView: View {
                         .padding(.horizontal, 10)
                 } placeholder: {
                     ProgressView("Loading...")
-                        .tint(Color("BabyPowder"))
-                        .foregroundColor(Color("BabyPowder"))
+                        .tint(Color.babyPowder)
+                        .foregroundColor(Color.babyPowder)
                 }
             }
         }

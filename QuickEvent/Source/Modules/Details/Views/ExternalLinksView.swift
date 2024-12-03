@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct ExternalLinksView: View {
-    let links: ExternalLinksDomain
+    private let links: ExternalLinksDomain
+    
+    init(links: ExternalLinksDomain) {
+        self.links = links
+    }
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -18,7 +22,7 @@ struct ExternalLinksView: View {
                         Image("Itunes")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .foregroundStyle(Color("BabyPowder"))
+                            .foregroundStyle(Color.babyPowder)
                     }
                 }
                 
@@ -27,7 +31,7 @@ struct ExternalLinksView: View {
                         Image("Spotify")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .foregroundStyle(Color("BabyPowder"))
+                            .foregroundStyle(Color.babyPowder)
                     }
                 }
                 
@@ -36,7 +40,7 @@ struct ExternalLinksView: View {
                         Image("Youtube")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .foregroundStyle(Color("BabyPowder"))
+                            .foregroundStyle(Color.babyPowder)
                     }
                 }
                 
@@ -45,7 +49,7 @@ struct ExternalLinksView: View {
                         Image("Twitter")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .foregroundStyle(Color("BabyPowder"))
+                            .foregroundStyle(Color.babyPowder)
                     }
                 }
                 
@@ -54,7 +58,7 @@ struct ExternalLinksView: View {
                         Image("Facebook")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .foregroundStyle(Color("BabyPowder"))
+                            .foregroundStyle(Color.babyPowder)
                     }
                 }
                 
@@ -63,7 +67,7 @@ struct ExternalLinksView: View {
                         Image("Wiki")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .foregroundStyle(Color("BabyPowder"))
+                            .foregroundStyle(Color.babyPowder)
                     }
                 }
                 
@@ -72,7 +76,7 @@ struct ExternalLinksView: View {
                         Image("Instagram")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .foregroundStyle(Color("BabyPowder"))
+                            .foregroundStyle(Color.babyPowder)
                     }
                 }
                 
@@ -81,7 +85,7 @@ struct ExternalLinksView: View {
                         Image("Homepage")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .foregroundStyle(Color("BabyPowder"))
+                            .foregroundStyle(Color.babyPowder)
                     }
                 }
                 
@@ -90,7 +94,7 @@ struct ExternalLinksView: View {
                         Image("LastFM")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .foregroundStyle(Color("BabyPowder"))
+                            .foregroundStyle(Color.babyPowder)
                     }
                 }
             }
@@ -99,21 +103,18 @@ struct ExternalLinksView: View {
     }
 }
 
-// Preview
-struct ExternalLinksView_Previews: PreviewProvider {
-    static var previews: some View {
-        let exampleLinks = ExternalLinksDomain(
-            youtube: [URL(string: "https://youtube.com")!],
-            twitter: [URL(string: "https://twitter.com")!],
-            facebook: [URL(string: "https://facebook.com")!],
-            wiki: [URL(string: "https://facebook.com")!],
-            instagram: [URL(string: "https://instagram.com")!],
-            homepage: [URL(string: "https://example.com")!],
-            itunes: [URL(string: "https://facebook.com")!],
-            lastfm: [URL(string: "https://last.fm")!],
-            spotify: [URL(string: "https://spotify.com")!]
-        )
-        ExternalLinksView(links: exampleLinks)
-            .background(Color("LapisBlue"))
-    }
+#Preview {
+    let exampleLinks = ExternalLinksDomain(
+        youtube: [URL(string: "https://youtube.com")!],
+        twitter: [URL(string: "https://twitter.com")!],
+        facebook: [URL(string: "https://facebook.com")!],
+        wiki: [URL(string: "https://facebook.com")!],
+        instagram: [URL(string: "https://instagram.com")!],
+        homepage: [URL(string: "https://example.com")!],
+        itunes: [URL(string: "https://facebook.com")!],
+        lastfm: [URL(string: "https://last.fm")!],
+        spotify: [URL(string: "https://spotify.com")!]
+    )
+    ExternalLinksView(links: exampleLinks)
+        .background(Color("LapisBlue"))
 }

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct DetailsTicketInfoView: View {
-    let pricing: PriceRangeDomain
+    private let pricing: PriceRangeDomain
     
-    init(pricing: PriceRangeDomain = PriceRangeDomain(type: "standard", currency: "PLN", min: 199.99, max: 29000.98)) {
+    init(pricing: PriceRangeDomain) {
         self.pricing = pricing
     }
     
@@ -23,11 +23,11 @@ struct DetailsTicketInfoView: View {
                         Text("Lowest Price")
                             .font(.subheadline)
                             .fontWeight(.medium)
-                            .foregroundColor(Color("BabyPowder"))
+                            .foregroundColor(Color.babyPowder)
                         Text(minPrice.toCurrencyString(currencyCode: pricing.currency) ?? "")
                             .font(.title3)
                             .fontWeight(.semibold)
-                            .foregroundColor(Color("BabyPowder"))
+                            .foregroundColor(Color.babyPowder)
                     }
                     Spacer()
                 }
@@ -37,21 +37,19 @@ struct DetailsTicketInfoView: View {
                         Text("Highest Price")
                             .font(.subheadline)
                             .fontWeight(.medium)
-                            .foregroundColor(Color("BabyPowder"))
+                            .foregroundColor(Color.babyPowder)
                         Text(maxPrice.toCurrencyString(currencyCode: pricing.currency) ?? "")
                             .font(.title3)
                             .fontWeight(.semibold)
-                            .foregroundColor(Color("BabyPowder"))
+                            .foregroundColor(Color.babyPowder)
                     }
                     Spacer()
                 }
             }
         }
-        
-        
     }
 }
 
 #Preview {
-    DetailsTicketInfoView()
+    DetailsTicketInfoView(pricing: PriceRangeDomain(type: "standard", currency: "PLN", min: 199.99, max: 29000.98))
 }

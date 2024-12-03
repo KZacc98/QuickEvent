@@ -20,17 +20,16 @@ class HomeViewModel: ObservableObject {
     private var pageSize = 20
     private var hasMoreData = true
 
- 
     init(eventsService: EventsService?, events: [EventDomain] = []) {
         self.eventsService = eventsService
         self.events = events
     }
 
-    func getEvents() {
+    func getEvents(dateAsc: Bool = false, dateDesc: Bool = false) {
         guard !isLoading && hasMoreData else { return }
         isLoading = true
         
-        eventsService?.getEvents(page: currentPage, pageSize: pageSize)
+        eventsService?.getEvents(page: currentPage, pageSize: pageSize, dateAsc: dateAsc, dateDesc: dateDesc)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 self?.isLoading = false
@@ -58,6 +57,17 @@ class HomeViewModel: ObservableObject {
         }
         
         return currentItem.id == lastEvent.id && hasMoreData && !isLoading
+    }
+    
+    func refreshEvents(eventDateOrder: FilterType) {
+        withAnimation(.snappy(duration: 1)) {
+            events = []
+            currentPage = 0
+            hasMoreData = true
+            errorMessage = nil
+            
+            getEvents(dateAsc: eventDateOrder == .ascending, dateDesc: eventDateOrder == .descending)
+        }
     }
     
     func getEvent(by id: String) async -> EventDomain? {

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct BaseCardView<Content: View>: View {
-    let content: Content
-    let infoImage: Image?
-    let infoText: String?
-    let showChevron: Bool
+    private let content: Content
+    private let infoImage: Image?
+    private let infoText: String?
+    private let showChevron: Bool
     
     init(infoImage: Image?,
          infoText: String?,
@@ -29,18 +29,18 @@ struct BaseCardView<Content: View>: View {
             HStack(spacing: 5) {
                 if let infoImage {
                     infoImage
-                        .foregroundColor(Color("BabyPowder"))
+                        .foregroundColor(Color.babyPowder)
                 }
                 
                 Text(infoText ?? "")
                     .fontWeight(.thin)
-                    .foregroundStyle(Color("BabyPowder"))
+                    .foregroundStyle(Color.babyPowder)
                 
                 Spacer()
                 
                 if showChevron {
                     Image(systemName: "chevron.right")
-                        .foregroundColor(Color("BabyPowder"))
+                        .foregroundColor(Color.babyPowder)
                 }
                 
             }
@@ -50,7 +50,7 @@ struct BaseCardView<Content: View>: View {
                 .padding(.bottom, 10)
         }
         .frame(maxWidth: 350)
-        .background(Color("LapisBlue"))
+        .background(Color.lapisBlue)
         .shadow(radius: 10)
         .cornerRadius(15)
     }
