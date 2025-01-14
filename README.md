@@ -25,6 +25,14 @@ The application provides detailed event information, including:
 - **Ticket pricing information**
 - **Event seating information(if available, otherwise additional event info)**
 # App Demos
+
+If demos below are not displayed correctly, follow the links:
+[Event List](https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_Event_List_lajyzy.gif)
+[Filter](https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_Filter_lrhkd4.gif)
+[Details](https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_Details_uiavts.gif)
+[Socials](https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_Socials_skbk60.gif)
+[Venue Details](https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_goToMap_ppqha7.gif)
+
 ## Home(Event list)
 | **Event List**   | **Filter**   |
 |-----------------|----------------------|
@@ -36,13 +44,6 @@ The application provides detailed event information, including:
 | <img src="https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_Details_uiavts.gif" width="300" /> | <img src="https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_Socials_skbk60.gif" width="300" /> |
 | **Venue Details(on tap)**   |
 | <img src="https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_goToMap_ppqha7.gif" width="300" /> |
-
-if demos above are not displayed correctly, follow the links:
-[Event List](https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_Event_List_lajyzy.gif)
-[Filter](https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_Filter_lrhkd4.gif)
-[Details](https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_Details_uiavts.gif)
-[Socials](https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_Socials_skbk60.gif)
-[Venue Details](https://res.cloudinary.com/dv1dmymg2/image/upload/QuickEvent_goToMap_ppqha7.gif)
 
 ## License
 
